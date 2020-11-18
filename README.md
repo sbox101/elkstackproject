@@ -144,7 +144,7 @@ SSH into the control node and follow the steps below:
 1.	create the directory “files”
 2.	Copy the “install-elk.yml file” to the directory “/etc/ansible”.
 3. Update the hosts file to include...
-
+---------------------------------------------------------
 
 [webservers]
 
@@ -168,7 +168,7 @@ SSH into the control node and follow the steps below:
  
 10.2.0.4 ansible_python_interpreter=/usr/bin/python3
 
-
+------------------------------------------------------------
 
 4. Navigate to /etc/ansible/roles
 
