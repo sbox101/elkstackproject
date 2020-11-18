@@ -146,7 +146,7 @@ SSH into the control node and follow the steps below:
 3. Update the hosts file to include...
 
 
-__[webservers]__
+[webservers]
 
 \## alpha.example.org
 
