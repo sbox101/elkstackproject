@@ -13,6 +13,7 @@ ELK Configuration
 Beats in Use
 Machines Being Monitored
 
+---------------------------------------
 
 __How to Use the Ansible Build__
 
@@ -29,8 +30,10 @@ __Description of the Topology__
  Note: Use the Markdown Table Generator to add/remove values from the table.
  
  Function: The purpose of our setup is to have two network security groups. The first is to protect the public IP address and to provide limited connectivity between virtual machines by limiting port access. 
+ 
+---------------------------------------
 
-__Jump Box:__
+Jump Box:
 
  52.149.151.87 (public) 
  
@@ -54,6 +57,8 @@ __Jump Box:__
  
  40.117.127.52
  
+-----------------------------------------
+
 Access Policies
 
 The machines on the internal network are not exposed to the public Internet. Only the Jump Box machine can accept connections from the Internet, and the rest of the IPs are handled and managed internally. The ELK VM can only post to an individual IP address.
@@ -64,6 +69,7 @@ Machines within the network can only be accessed by ssh from the Jumpbox (52.149
 
 A summary of the access policies in place can be found in the table below.
 
+----------------------------------------------------------------------------
 
 +--+--+--+--+--+
 
@@ -87,6 +93,7 @@ A summary of the access policies in place can be found in the table below.
 
 +----------+----------------------+--------------------+--+--+
 
+------------------------------------------------------------------------------------
 
 Allowed IP Addresses
 
@@ -104,6 +111,8 @@ Elk-VM	Yes	Variable Personal IP
 
 Load Balancer	No	All internal IP addresses
 
+-----------------------------------------------------------------------------------
+
 __Elk Configuration__
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because automating Ansible setup prevents installation errors and simplifies installation and container configuration. Automating setup means that each one is set up the same way should one need to be recreated as well.
@@ -119,6 +128,8 @@ The playbook implements the following tasks:
 The following screenshot displays the result of running docker ps after successfully configuring the ELK instance.
 
 Note: The following image link needs to be updated. Replace docker_ps_output.png with the name of your screenshot image file.
+
+-------------------------------------------------------------------------------------------------
 
 __Target Machines & Beats__
 
@@ -136,6 +147,8 @@ We have installed the following Beats on these machines:
 These Beats allow us to collect the following information from each machine:
 
  Filebeat forwards log data located in the registry. it can collect a variety of log events which can be tailored to preferred specifications. There is a filebeat input file that determines which 
+
+-------------------------------------------------------------------------------------
 
 __Using the Playbook__
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned:
