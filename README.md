@@ -147,17 +147,27 @@ SSH into the control node and follow the steps below:
 
 
 __[webservers]__
+
 \## alpha.example.org
+
 \## beta.example.org
+
 \## 192.168.1.100
+
 \## 192.168.1.110
 
+
 10.0.0.5 ansible_python_interpreter=/usr/bin/python3
+
 10.0.0.6 ansible_python_interpreter=/usr/bin/python3
+
 10.0.0.7 ansible_python_interpreter=/usr/bin/python3
 
+
  [elk]
+ 
 10.2.0.4 ansible_python_interpreter=/usr/bin/python3
+
 
 
 4. Navigate to /etc/ansible/roles
