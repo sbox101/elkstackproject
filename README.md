@@ -19,64 +19,120 @@ __How to Use the Ansible Build__
 __Description of the Topology__
 
  The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D\*mn Vulnerable Web Application.
+ 
  Load balancing ensures that the application will be highly available in addition to preventing unwanted access to the network through use of a security-group-controlled Jump    Box and load balancer.
+ 
  Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the system files and logs events.
+ 
  The configuration details of each machine may be found below.
+ 
  Note: Use the Markdown Table Generator to add/remove values from the table.
- Name
+ 
  Function: The purpose of our setup is to have two network security groups. The first is to protect the public IP address and to provide limited connectivity between virtual machines by limiting port access. 
 
 __Jump Box:__
- 52.149.151.87 (public) 
- Gateway
- 10.0.0.4 (internal)
- Web-1: 
- 10.0.0.5 (internal)
- Web-2: 
- 10.0.0.6 (internal)
- Web-3: 
- 10.0.0.7 (internal)
- Load Balancer:
- 40.117.127.52
-Access Policies
-The machines on the internal network are not exposed to the public Internet.
-Only the Jump Box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-Policy 1 - You will want to set up the network security group inbound rules to set it to allow SSH access between the Jump Box and Web-1, Web-2, and Web-3. This will allow it to make changes to the other machines remotely. 
 
+ 52.149.151.87 (public) 
  
+ Gateway
+ 
+ 10.0.0.4 (internal)
+ 
+ Web-1: 
+ 
+ 10.0.0.5 (internal)
+ 
+ Web-2: 
+ 
+ 10.0.0.6 (internal)
+ 
+ Web-3: 
+ 
+ 10.0.0.7 (internal)
+ 
+ Load Balancer:
+ 
+ 40.117.127.52
+ 
+Access Policies
+
+The machines on the internal network are not exposed to the public Internet. Only the Jump Box machine can accept connections from the Internet, and the rest of the IPs are handled and managed internally. The ELK VM can only post to an individual IP address.
+
+Policy 1 - You will want to set up the network security group inbound rules to set it to allow SSH access between the Jump Box and Web-1, Web-2, and Web-3. This will allow it to make changes to the other machines remotely.  
 
 Machines within the network can only be accessed by ssh from the Jumpbox (52.149.151.87).
+
 A summary of the access policies in place can be found in the table below.
+
+
++--+--+--+--+--+
+
+|-Name-----|-Publicly Accessible-|-Allowed IP-|  |  |
+
++----------+----------------------+--------------------+--+--+
+
+|-Jump Box-|-Yes------------------| 52.149.151.87      |  |  |
+
++----------+----------------------+--------------------+--+--+
+
+|-Web-1-----|-No------------------| 10.0.0.5-----------|  |  |
+
++----------+----------------------+---------------------+--+--+
+
+|Web-2-----|-No-------------------| 10.0.0.6-----------|  |  |
+
++----------+----------------------+--------------------+--+--+
+
+|Web-3-----|-No-------------------| 10.0.0.6-----------|  |  |
+
++----------+----------------------+--------------------+--+--+
+
+
 Allowed IP Addresses
+
 Name	Publicly Accessibly	Allowed IP
+
 Jump Box	Yes	Variable Personal IP
+
 Web-1	No	10.0.0.5
+
 Web-2	No	10.0.0.6
+
 Web-3	No	10.0.0.7
+
 Elk-VM	Yes	Variable Personal IP
+
 Load Balancer	No	All internal IP addresses
 
-Elk Configuration
+__Elk Configuration__
+
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because automating Ansible setup prevents installation errors and simplifies installation and container configuration. Automating setup means that each one is set up the same way should one need to be recreated as well.
+
 The playbook implements the following tasks:
- 	installs elk
- 	installs docker.io
- 	installs python3-pip
- 	installs docker
- 	sets sysctl memory limitation
- 	creates elk container and provides port access for our VMs to 5601, 9200, 5044
+--installs elk
+--installs docker.io
+--installs python3-pip
+--installs docker
+--sets sysctl memory limitation
+--creates elk container and provides port access for our VMs to 5601, 9200, 5044
+
 The following screenshot displays the result of running docker ps after successfully configuring the ELK instance.
+
 Note: The following image link needs to be updated. Replace docker_ps_output.png with the name of your screenshot image file.
-Target Machines & Beats
+
+__Target Machines & Beats__
+
 This ELK server is configured to monitor the following machines:
 
 VM – Web 1: 10.0.0.5
 VM – Web 2: 10.0.0.6
 VM – Web 3: 10.0.0.7
- For security reasons, these do not have a public IP address
- The security group intercepts all traffic before it gets to the “jump box” or assigned by the load balancer
+
+*for security reasons, these do not have a public IP address*
+
+  The security group intercepts all traffic before it gets to the “jump box” or assigned by the load balancer
 We have installed the following Beats on these machines:
- Filebeat
+  Filebeat
 These Beats allow us to collect the following information from each machine:
 
  Filebeat forwards log data located in the registry. it can collect a variety of log events which can be tailored to preferred specifications. There is a filebeat input file that determines which 
